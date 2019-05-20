@@ -1,6 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 vector< pair<int,int> >vector1;
+//function to find max element
 int findmax(int arr[],int n) {
    int max = arr[1];
    for(int i = 2; i<=n; i++) {
@@ -9,6 +10,7 @@ int findmax(int arr[],int n) {
    }
    return max; 
 }
+//function to search for corresponding key value pair in original array
 void search(int B[][20],int A[][20],int n,int l){
 	for(int i = 1;i<n+1;i++){
 		if(B[0][i]==A[0][l]){
@@ -22,15 +24,19 @@ void countSort(int arr[], int n) {
    int A[n+1];
    int max = findmax(arr, n);
    int freq[max+1];     
+   //initialising array to 0
    memset(freq,0,sizeof(freq));
+   //finding frequency of each element
    for(int i = 1;i<=n;i++){
-   freq[arr[i]]++; }
-	for(int i = 1;i<max+1;i++){
-      freq[i]+= freq[i-1];} 
+       freq[arr[i]]++; }
+  //totaling the frequencies
+   for(int i = 1;i<max+1;i++){
+       freq[i]+= freq[i-1];} 
    for(int i = n;i>=1; i--) {
-      A[freq[arr[i]]] = arr[i];
-      freq[arr[i]] -= 1; 
+         A[freq[arr[i]]] = arr[i];
+         freq[arr[i]] -= 1; 
     }
+   //reassignement to original array
    for(int i = 1;i<=n; i++) {
       arr[i] = A[i];
    }
