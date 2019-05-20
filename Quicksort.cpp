@@ -3,6 +3,7 @@ using namespace std;
 int partition(int arr[],int brr[],int l,int h){
 	int i = l - 1;
 	int pivot =arr[h];
+	//assigning a pivot, here the last element
 	for(int j=l;j<=h-1;j++){
 		if(arr[j]<=pivot){
 			i += 1;
@@ -12,19 +13,22 @@ int partition(int arr[],int brr[],int l,int h){
 			temp = brr[j];
 			brr[j] = brr[i];
 			brr[i] = temp;
+			//swapping the i and j elements if the jth element if less than pivot
 		}
 	}
 	int temp1 = arr[i+1];
 	arr[i+1] = arr[h];
-	arr[h] = temp1;
-		int temp = brr[i+1];
-			brr[i+1] = brr[h];
-			brr[h] = temp;
+	arr[h] = temp1; //swapping elements
+	int temp = brr[i+1];
+	brr[i+1] = brr[h];
+	brr[h] = temp;  //swapping elements
 	return i+1;
+	//Element to use as pivot to call recursively
 }
 void quicksort(int arr[],int brr[],int l,int h){
 	if(l<h){
-	    int p = partition(arr,brr,l,h);	
+	    int p = partition(arr,brr,l,h);
+	    //calling quicksort for 2 partitions
 	    quicksort(arr,brr,l,p-1);
 	    quicksort(arr,brr,p+1,h);
 }}
